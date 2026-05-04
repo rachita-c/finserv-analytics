@@ -12,7 +12,8 @@ def value_at_risk(
 
     Bug: does not handle empty list — will raise IndexError.
     """
-    # BUG: missing:  if not returns: return None
+    if not returns:
+        return None
     sorted_returns = sorted(returns)
     index = int((1 - confidence) * len(sorted_returns))
     return sorted_returns[index]
