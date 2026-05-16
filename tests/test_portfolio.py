@@ -25,3 +25,17 @@ def test_top_holdings_returns_descending():
     top = top_holdings(portfolio, n=3)
     values = [v for _, v in top]
     assert values == sorted(values, reverse=True), "Holdings should be in descending order"
+
+
+def test_top_holdings_returns_largest():
+    """Verify top_holdings returns the largest holdings, not the smallest."""
+    portfolio = {"AAPL": 0.30, "MSFT": 0.25, "TSLA": 0.15}
+    top = top_holdings(portfolio, n=2)
+    assert top == [("AAPL", 0.30), ("MSFT", 0.25)]
+
+
+def test_top_holdings_default_n():
+    portfolio = {"A": 0.5, "B": 0.3, "C": 0.1, "D": 0.05, "E": 0.03, "F": 0.02}
+    top = top_holdings(portfolio)
+    assert len(top) == 5
+    assert top[0] == ("A", 0.5)
