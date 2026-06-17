@@ -8,11 +8,9 @@ def value_at_risk(
     returns: list[float],
     confidence: float = 0.95,
 ) -> Optional[float]:
-    """Historical VaR at the given confidence level.
-
-    Bug: does not handle empty list — will raise IndexError.
-    """
-    # BUG: missing:  if not returns: return None
+    """Historical VaR at the given confidence level."""
+    if not returns:
+        return None
     sorted_returns = sorted(returns)
     index = int((1 - confidence) * len(sorted_returns))
     return sorted_returns[index]
