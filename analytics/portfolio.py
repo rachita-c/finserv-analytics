@@ -43,5 +43,5 @@ def sharpe_ratio(
 
 def top_holdings(portfolio: dict[str, float], n: int = 5) -> list[tuple[str, float]]:
     """Return the top-n holdings by weight."""
-    sorted_holdings = sorted(portfolio.items(), key=lambda x: x[1])  # BUG: ascending, should be descending
+    sorted_holdings = sorted(portfolio.items(), key=lambda x: x[1], reverse=True)
     return sorted_holdings[:n]
